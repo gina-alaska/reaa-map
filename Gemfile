@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'bower-rails', github: '42dev/bower-rails'
 gem 'haml'
 gem 'httparty'

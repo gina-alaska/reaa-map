@@ -60,6 +60,11 @@ ReaaMap::Application.configure do
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
+  config.assets.precompile << lambda do |path, filename|
+    exts = %w(.sh .html .json .txt .md .js .css .license .map)
+    exclude_paths = /(tests|test|doc|example|examples)/
+    filename =~ /vendor\/assets\/bower_components/ && !File.extname(path).blank? && !(File.dirname(filename) =~ exclude_paths) && !exts.include?(File.extname(path).downcase)
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
