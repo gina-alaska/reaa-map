@@ -1,0 +1,66 @@
+// Place all the styles related to the Maps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#layers-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  overflow: auto;
+  
+  .panel {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  .panel-heading {
+    border-bottom: 1px solid #afafaf;
+  }
+  .panel-body {
+    border-bottom: 1px solid #afafaf;
+    padding: 0;
+  }
+}
+
+#map-panel {
+  position: absolute;
+  top: 0;
+  left: 350px;
+  bottom: 0;
+  right: 0;
+}
+
+.layer-group {
+  cursor: pointer;  
+}
+
+.layer-group-content label {
+  width: 100%;
+  padding: 5px;
+  padding-left: 20px;
+  font-weight: normal;
+  
+  h5 { 
+    padding: 0; margin: 0; 
+    padding-top: 3px;
+    padding-bottom: 5px;
+  }
+  
+  .layer-input {
+    width: 10%;
+    float: left;
+    text-align: center;
+  }
+  
+  .layer-legend {
+    float: left;
+    width: 90%;
+  }
+}

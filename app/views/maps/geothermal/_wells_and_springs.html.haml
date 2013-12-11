@@ -1,0 +1,30 @@
+%label
+  .layer-input
+    %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
+  .layer-legend
+    %h5= layer.humanize
+    %ul.nav
+      %li
+        .map-icon
+          .base-cluster{ class: layer + ' level1', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        55-100&deg; F
+      %li
+        .map-icon
+          .base-cluster{ class: layer + ' level2', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        100-200&deg; F
+      %li
+        .map-icon
+          .base-cluster{ class: layer + ' level3', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        200-300&deg; F
+      %li
+        .map-icon
+          .base-cluster{ class: layer + ' level4', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        &gt 300&deg; F

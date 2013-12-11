@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title Renewable Energy Atlas of Alaska
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    %section#header
+      %h4.pull-right Renewable Energy Atlas of Alaska
+    %section#content
+      = yield

@@ -1,0 +1,30 @@
+%label
+  .layer-input
+    %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
+  .layer-legend
+    %h5= layer.humanize
+    %ul.nav
+      %li
+        .map-icon
+          .base-cluster.diamond{ class: layer + ' level1', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        50-220 W/m2
+      %li
+        .map-icon
+          .base-cluster.diamond{ class: layer + ' level2', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        220-450 W/m2
+      %li
+        .map-icon
+          .base-cluster.diamond{ class: layer + ' level3', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        600-900 W/m2
+      %li
+        .map-icon
+          .base-cluster.diamond{ class: layer + ' level4', style: 'display: inline-block; margin-right: 10px;' }
+            %div
+              %span &nbsp;
+        1500-1700 W/m2

@@ -1,0 +1,39 @@
+#layers-panel
+  = render 'layers'
+#map-panel
+  #map
+    #progress-container
+
+- default_section = 'Renewable_Energy_Fund_Projects'
+- default_layer = 'Renewable_Energy_Fund_Projects'
+:javascript
+  var map_container;
+  
+  $(document).on('ready', function() {
+    map_container = new Map('map');  
+    $('#map').data('map_container', map_container);
+    
+    $('[href="##{default_section}"]').click();
+    $('.#{default_layer}-input').click();
+    
+    $('[data-show]').each(function(item) {
+      var layer = $(this).data('show')
+      $(this).append(Layers.defs[layer][$(this).data('property')])
+    })
+  });
+  
+  $(document).on('click', '[data-togglelayer]', function(e) {
+    var name = $(this).data('togglelayer');
+    var status = Layers.toggle(name, map_container.map);
+    $('.' + name + '-input').prop('checked', status)
+  });
+  
+  $(document).on('click', '#layers-accordion [data-toggle="collapse"]', function() {
+    var icon = $(this).find('h5 span.glyphicon');
+    
+    $('#layers-panel .glyphicon-folder-open').addClass('glyphicon-folder-close').removeClass('glyphicon-folder-open')
+    
+    if (!$(this).hasClass('collapsed')) {
+      $(icon).removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open')
+    }
+  })

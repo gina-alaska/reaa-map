@@ -1,0 +1,271 @@
+.map-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  text-align: center;
+}
+
+.base-cluster.diamond {
+  border-radius: 0px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+  width: 25px;
+  height: 25px;
+  margin-left: 2px;
+  margin-top: 8px;
+}
+
+.base-cluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+  display: inline-block; 
+  width: 100%; 
+  height: 100%;
+}
+.base-cluster div {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+
+  text-align: center;
+  border-radius: 15px;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.base-cluster span {
+  line-height: 30px;
+}
+
+.tidal_power_potential {
+  border-radius: 0;
+
+  &.level1 {
+    background-color: #8EFFCA;
+  }
+  &.level2 {
+    background-color: #009387;
+  }
+  &.level3 {
+    background-color: #297FFF;
+  }
+}
+
+.wave_power_potential {
+  border-radius: 0;
+
+  &.level1 {
+    background-color: #8EFFCA;
+  }
+  &.level2 {
+    background-color: #009387;
+  }
+  &.level3 {
+    background-color: #297FFF;
+  }
+  &.level4 {
+    background-color: #002A94;
+  }
+}
+
+.in_river_power_potential {
+  &.level1 {
+    background-color: #FFD400;
+  }
+  &.level2 {
+    background-color: #FF9900;
+  }
+  &.level3 {
+    background-color: #FF0000;
+  }
+  &.level4 {
+    background-color: #7C0000;
+  }
+}
+
+.biomass {
+  background-image: url(<%= asset_path 'icons/biomass-32.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.wind {
+  background-image: url(<%= asset_path 'icons/wind-32.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.hydro {
+  background-image: url(<%= asset_path 'icons/water-droplet.png' %>);
+  background-size:auto 100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.solar_thermal {
+  background-image: url(<%= asset_path 'icons/sun.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.geothermal {
+  background-image: url(<%= asset_path 'icons/geothermal-32.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+
+.fish_processor {
+  background-image: url(<%= asset_path 'icons/fish.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.volcanoes {
+  background-image: url(<%= asset_path 'icons/geothermal-32.png' %>);
+  background-size:100%;
+  background-position:center; 
+  background-repeat:no-repeat;
+  border-radius: 0;  
+}
+
+.potential_geothermal {
+  background-color: #D00000;
+}
+.potential_geothermal div {
+  background-color: #FF0000;
+}
+
+.wells_and_springs {
+  background-color: #F00000;
+  vertical-align: middle;
+  
+  &.level1 {
+    width: 5px;
+    height: 5px;
+  }
+  &.level2 {
+    width: 10px;
+    height: 10px;
+  }
+  &.level3 {
+    width: 20px;
+    height: 20px;
+  }
+  &.level4 {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.existing {
+  background-color: #2229BA;
+  vertical-align: middle;
+  
+  &.level1 {
+    width: 5px;
+    height: 5px;
+  }
+  &.level2 {
+    width: 10px;
+    height: 10px;
+  }
+  &.level3 {
+    width: 20px;
+    height: 20px;
+  }
+  &.level4 {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.potential {
+  background-color: #66E8FF;
+  vertical-align: middle;
+  
+  &.level1 {
+    width: 5px;
+    height: 5px;
+  }
+  &.level2 {
+    width: 10px;
+    height: 10px;
+  }
+  &.level3 {
+    width: 20px;
+    height: 20px;
+  }
+  &.level4 {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.woody_biomass {
+  border-radius: 0;  
+  &.level1 {
+    background-color: #AAFFCB;
+  }
+  &.level2 {
+    background-color: #44FF8D;
+  }
+  &.level3 {
+    background-color: #00DD56;
+  }
+  &.level4 {
+    background-color: #00772E;
+  }
+}
+
+.landfills {
+  background-color: #00422c;
+  border-radius: 0;
+}
+
+.landfills div {
+  background-color: #078500;
+  border-radius: 0;
+}
+
+.ocean_river {
+  border-radius: 0;
+  background-color: #66E8FF;
+  
+  div { width: 25px; }
+}
+
+.heat_recovery {
+  background-color: #F00000;
+}
+
+.heat_recovery div {
+  background-color: #FF7F00;
+}
+
+.transmission {
+  background-color: #000;
+}
+
+.transmission div {
+  background-color: #FEE302;
+}
+
+.sawmills {
+  background-color: #7F3F00;
+}
+
+.sawmills div {
+  background-color: #FEE302;
+}

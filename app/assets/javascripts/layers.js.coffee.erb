@@ -1,0 +1,97 @@
+@Layers = {
+  map: null,
+  
+  icons: {
+    coal: L.icon({
+      iconUrl: '<%= image_path("icons/coal-32.png") %>',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [16, -3]
+    })
+  },
+  
+  defs: {
+    'sawmills': { 
+      type: 'geojson',
+      url: '/test.geojson', 
+      layer: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', className: 'base-cluster sawmills', iconSize: new L.Point(40, 40) });
+        })
+        markers.addLayer(Layers.sawmills(geojson))
+        markers
+    },
+    'wind_power': {
+      type: 'tile',
+      url: 'http://tiles.gina.alaska.edu/tilesrv/aea_wind_google/tile/{x}/{y}/{z}',
+      layer: null
+    },
+    'woody_biomass': {
+      type: 'tile',
+      url: 'http://tiles.gina.alaska.edu/tiles/aea_forest_biomass_google/tile/{x}/{y}/{z}',
+      layer: null
+    },
+    'MatSu_2011_RGB': {
+      type: 'tile',
+      url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_rgb/tile/{x}/{y}/{z}',
+      layer: null
+    },
+    'MatSu_2011_NIR': {
+      type: 'tile',
+      url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_nir/tile/{x}/{y}/{z}',
+      layer: null
+    },
+    'MatSu_2011_LiDAR_Hillshade': {
+      type: 'tile',
+      url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_dem/tile/{x}/{y}/{z}',
+      layer: null
+    }
+  },
+  
+  toggle: (name, map) =>
+    return false unless Layers.defs[name]?
+    
+    if Layers.defs[name].layer?
+      if map.hasLayer(Layers.defs[name].layer)
+        map.removeLayer(Layers.defs[name].layer)
+        return false
+      else
+        map.addLayer(Layers.defs[name].layer)
+        return true
+    else
+      Layers.build_layer(Layers.defs[name], map)
+      return true
+      
+  build_layer: (def, map) =>
+    switch def.type
+      when 'geojson'
+        Layers.fetch(def, map)
+      when 'tile'
+        def.layer = L.tileLayer(def.url)
+        map.addLayer(def.layer)
+      
+  
+  fetch: (def, map) =>
+    $.getJSON def.url, (data) => 
+      def.layer = def.builder(data)
+      def.layer.on('')
+      map.addLayer def.layer
+  
+  sawmills: (geojson) ->
+    L.Proj.geoJson(geojson, {
+      pointToLayer:  (feature, latlng) =>
+        L.circleMarker(latlng, {
+          radius: 10,
+          fillColor: "#FEE302",
+          color: "#7F3F00",
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 1
+        })
+      onEachFeature: (feature, layer) =>
+        if feature.properties? and feature.properties.popup_content?
+          layer.bindPopup(feature.properties.popup_content)
+    })
+}

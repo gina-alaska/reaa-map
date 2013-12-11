@@ -1,0 +1,12 @@
+- %w{ MatSu_2011_RGB MatSu_2011_NIR MatSu_2011_LiDAR_Hillshade }.each do |layer|
+  %label
+    .layer-input
+      %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
+    .layer-legend
+      %h5
+        %b
+          (
+          %span{ data: { show: layer, property: 'type' }}
+          )
+        = layer.gsub('_', ' ')
+        %small{ data: { show: layer, property: 'url' }}
