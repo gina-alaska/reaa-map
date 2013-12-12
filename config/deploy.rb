@@ -23,15 +23,6 @@ set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 
 namespace :deploy do
-  desc 'Deploy bower components'
-  before :updated, :bower do
-    on roles(:web), in: :sequence, wait: 5 do
-      within release_path do
-        execute :rake, 'bower:install'
-      end
-    end
-  end
-
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
