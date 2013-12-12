@@ -32,7 +32,7 @@
           iconCreateFunction: (cluster) ->
             return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', className: 'base-cluster fish_processor', iconSize: new L.Point(40, 40) });
         })
-        markers.addLayer(Layers.sawmills(geojson))
+        markers.addLayer(Layers.fish_processors(geojson))
         markers
     },
     'wind_power': {
@@ -90,6 +90,16 @@
       def.layer = def.builder(data)
       def.layer.on('')
       map.addLayer def.layer
+  
+  fish_processors: (geojson) ->
+    L.Proj.geoJson(geojson, {
+      pointToLayer:  (feature, latlng) =>
+        new L.DivIcon({ html: '<div><span></span></div>', className: 'base-cluster fish_processor', iconSize: new L.Point(40, 40) })
+          
+      onEachFeature: (feature, layer) =>
+        if feature.properties? and feature.properties.popup_content?
+          layer.bindPopup(feature.properties.popup_content)
+    })
   
   sawmills: (geojson) ->
     L.Proj.geoJson(geojson, {
