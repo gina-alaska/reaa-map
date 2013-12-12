@@ -23,6 +23,18 @@
         markers.addLayer(Layers.sawmills(geojson))
         markers
     },
+    'fish_processor': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/biomass/fish_processors/fish_processors.geojson', 
+      layer: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', className: 'base-cluster fish_processor', iconSize: new L.Point(40, 40) });
+        })
+        markers.addLayer(Layers.sawmills(geojson))
+        markers
+    },
     'wind_power': {
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tilesrv/aea_wind_google/tile/{x}/{y}/{z}',
