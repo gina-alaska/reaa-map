@@ -5,7 +5,6 @@
     #progress-container
 
 - default_section = 'Renewable_Energy_Fund_Projects'
-- default_layer = 'Renewable_Energy_Fund_Projects'
 :javascript
   var map_container;
   
@@ -14,7 +13,7 @@
     $('#map').data('map_container', map_container);
     
     $('[href="##{default_section}"]').click();
-    $('.#{default_layer}-input').click();
+    $('[href="##{default_section}"]').parent().find('input[type="checkbox"]').click();
     
     $('[data-show]').each(function(item) {
       var layer = $(this).data('show')

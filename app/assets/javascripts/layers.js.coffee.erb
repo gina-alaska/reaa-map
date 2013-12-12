@@ -7,10 +7,128 @@
       iconSize: [32, 32],
       iconAnchor: [16, 16],
       popupAnchor: [16, -3]
-    })
+    }),
+    
+    for_class: (klass, cluster = null, size = null) ->
+      if size?
+        iconSize = size
+      else
+        iconSize = L.point(40, 40)  
+      
+      if cluster? and cluster.getChildCount?
+        text = cluster.getChildCount() 
+      else
+        text = ''
+        
+      return L.divIcon({ html: "<div><span>#{text}</span></div>", className: "base-cluster #{klass}" , iconSize: iconSize })
+    
+    fish_processor: (cluster = null) ->
+      if cluster? and cluster.getChildCount?
+        text = cluster.getChildCount() 
+      else
+        text = ''
+        
+      return L.divIcon({ html: "<div><span>#{text}</span></div>", className: 'base-cluster fish_processor', iconSize: new L.Point(61, 17), iconAnchor: new L.Point(30, 8) })
   },
   
   defs: {
+    'biomass-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/biomass-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('biomass', cluster)
+        })
+        markers.addLayer(Layers.for_class('biomass', geojson))
+        markers
+    },
+    'geothermal-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/geothermal-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('geothermal', cluster)
+        })
+        markers.addLayer(Layers.for_class('geothermal', geojson))
+        markers
+    },
+    'hydro-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/hydro-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('hydro', cluster)
+        })
+        markers.addLayer(Layers.for_class('hydro', geojson))
+        markers
+    },
+    'wind-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/wind-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('wind', cluster)
+        })
+        markers.addLayer(Layers.for_class('wind', geojson))
+        markers
+    },
+    'transmission-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/transmission-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('transmission', cluster)
+        })
+        markers.addLayer(Layers.for_class('transmission', geojson))
+        markers
+    },
+    'solar_thermal-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/solar_thermal-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('solar_thermal', cluster)
+        })
+        markers.addLayer(Layers.for_class('solar_thermal', geojson))
+        markers
+    },
+    
+    'ocean_river-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/oceanriver-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('ocean_river diamond', cluster, L.point(30, 30))
+        })
+        markers.addLayer(Layers.for_class('ocean_river diamond', geojson, 45, L.point(30, 30)))
+        markers
+    },
+    'heat_recovery-refp': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/heat_recovery-renewable_energy_fund_sites_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('heat_recovery', cluster)
+        })
+        markers.addLayer(Layers.for_class('heat_recovery', geojson))
+        markers
+    },
     'sawmills': { 
       type: 'geojson',
       url: '/data/aedi-data-2013/biomass/sawmills/sawmills.geojson', 
@@ -18,9 +136,9 @@
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
           iconCreateFunction: (cluster) ->
-            return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', className: 'base-cluster sawmills', iconSize: new L.Point(40, 40) });
+            Layers.icons.for_class('sawmills', cluster)
         })
-        markers.addLayer(Layers.sawmills(geojson))
+        markers.addLayer(Layers.for_class('sawmills', geojson))
         markers
     },
     'fish_processor': {
@@ -29,8 +147,7 @@
       layer: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
-          iconCreateFunction: (cluster) ->
-            return new L.DivIcon({ html: '<div><span>' + cluster.getChildCount() + '</span></div>', className: 'base-cluster fish_processor', iconSize: new L.Point(40, 40) });
+          iconCreateFunction: Layers.icons.fish_processor
         })
         markers.addLayer(Layers.fish_processors(geojson))
         markers
@@ -94,24 +211,23 @@
   fish_processors: (geojson) ->
     L.Proj.geoJson(geojson, {
       pointToLayer:  (feature, latlng) =>
-        new L.DivIcon({ html: '<div><span></span></div>', className: 'base-cluster fish_processor', iconSize: new L.Point(40, 40) })
+        L.marker(latlng, {
+          icon: Layers.icons.fish_processor()
+        })
           
       onEachFeature: (feature, layer) =>
         if feature.properties? and feature.properties.popup_content?
           layer.bindPopup(feature.properties.popup_content)
     })
-  
-  sawmills: (geojson) ->
+    
+  for_class: (klass, geojson, angle = 0, iconSize = null) ->
     L.Proj.geoJson(geojson, {
       pointToLayer:  (feature, latlng) =>
-        L.circleMarker(latlng, {
-          radius: 10,
-          fillColor: "#FEE302",
-          color: "#7F3F00",
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 1
+        L.rotatedMarker(latlng, {
+          icon: Layers.icons.for_class(klass, null, iconSize),
+          angle: angle
         })
+          
       onEachFeature: (feature, layer) =>
         if feature.properties? and feature.properties.popup_content?
           layer.bindPopup(feature.properties.popup_content)

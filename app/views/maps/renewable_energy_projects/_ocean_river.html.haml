@@ -1,6 +1,10 @@
 %li
-  .map-icon
-    .base-cluster.diamond{ class: layer }
-      %div
-        %span &nbsp;
-  = layer.humanize
+  %label
+    .layer-input
+      %input{ type:'checkbox', class: "#{layer}-refp-input", data: { togglelayer: "#{layer}-refp" } }
+    .layer-legend
+      .map-icon.pull-left{ style: 'margin-right: 10px;' }
+        .base-cluster.diamond{ class: layer }
+          %div
+            %span &nbsp;
+      %h5= layer.humanize

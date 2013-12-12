@@ -1,8 +1,3 @@
-%label
-  .layer-input
-    %input{ type:'checkbox', class: "#{section}-input", data: { togglelayer: section } }
-  .layer-legend
-    %h5= section.gsub('_', ' ')
-    %ul.nav
-      - %w{ biomass geothermal heat_recovery hydro ocean_river solar_thermal transmission wind }.each do |layer|
-        = render "/maps/renewable_energy_projects/#{layer.downcase}", layer: layer
+%ul.nav
+  - %w{ biomass geothermal heat_recovery hydro ocean_river solar_thermal transmission wind }.each do |layer|
+    = render "/maps/renewable_energy_projects/#{layer.downcase}", layer: layer

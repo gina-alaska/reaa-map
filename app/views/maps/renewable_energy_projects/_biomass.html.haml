@@ -1,6 +1,10 @@
 %li
-  .map-icon
-    .base-cluster{ class: layer }
-      %div
-        %span &nbsp;
-  = layer.humanize
+  %label
+    .layer-input
+      %input{ type:'checkbox', class: "biomass-refp-input", data: { togglelayer: 'biomass-refp' } }
+    .layer-legend
+      .map-icon.pull-left{ style: 'margin-right: 10px;' }
+        .base-cluster{ class: layer }
+          %div
+            %span &nbsp;
+      %h5 Biomass

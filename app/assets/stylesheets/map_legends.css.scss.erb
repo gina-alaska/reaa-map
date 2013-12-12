@@ -10,8 +10,6 @@
   transform: rotate(45deg);
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari and Chrome */
-  width: 25px;
-  height: 25px;
   margin-left: 2px;
   margin-top: 8px;
 }
@@ -22,6 +20,9 @@
   display: inline-block; 
   width: 100%; 
   height: 100%;
+  &:hover {
+    z-index: 1000000 !important;
+  }
 }
 .base-cluster div {
   width: 30px;
@@ -83,12 +84,19 @@
   }
 }
 
-.biomass {
+.biomass div {
   background-image: url(<%= asset_path 'icons/biomass-32.png' %>);
   background-size:100%;
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  max-width: 100%;
+  span { margin-left: 5px; }
 }
 
 .wind {
@@ -121,15 +129,22 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  max-width: 100%;
 }
 
-
-.fish_processor {
+.fish_processor div {
   background-image: url(<%= asset_path 'icons/fish.png' %>);
   background-size:100%;
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  color: #fff;
+  width: 61px;
+  height: 17px;
+  margin:0;
+  padding: 0;
+  max-width: 100%;
+  span { line-height: 17px; }
 }
 
 .volcanoes {
@@ -241,9 +256,10 @@
 
 .ocean_river {
   border-radius: 0;
-  background-color: #66E8FF;
-  
-  div { width: 25px; }
+  background-color: #00F;
+  width: 30px;
+  height: 30px;
+  div { width: 20px; height: 20px; background-color: #66E8FF; border-radius: 0; }
 }
 
 .heat_recovery {
