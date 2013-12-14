@@ -418,8 +418,18 @@
         if feature.properties?
           if feature.properties.popup_content?
             layer.bindPopup(feature.properties.popup_content)
-          else if feature.properties.NAME
-            layer.bindPopup(feature.properties.NAME)
+          else 
+            popup = ""
+            if feature.properties.NAME
+              popup += "<h5>#{feature.properties.NAME}</h5>"
+            else if feature.properties.Project
+              popup += "<h5>#{feature.properties.Project}</h5>"
+              
+            if feature.properties.RptLink
+              popup += "<p><a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a></p>"
+              
+            if popup.length > 0
+              layer.bindPopup(popup) 
             
     })
 }
