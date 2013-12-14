@@ -1,0 +1,16 @@
+- %w{ solar }.each do |layer|
+  %label
+    .layer-input
+      %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
+    .layer-legend
+      %h5
+        %b
+          (
+          %span{ data: { show: layer, property: 'type' }}
+          )
+        = layer.humanize
+        %small{ data: { show: layer, property: 'url' } }
+        
+      %p.legend-text
+        Solar Insolation: U.S. Department of Energy, National Renewable Energy Laboratory, 1999.  Data layer provides annual average daily total solar resource averaged over surface cells of approximately 40 km by 40km in size.
+        / = link_to 'www.nrel.gov/gis/data_analysis.html', 'http://www.nrel.gov/gis/data_analysis.html', target: :_blank

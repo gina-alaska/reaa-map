@@ -2,29 +2,13 @@
   .layer-input
     %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
   .layer-legend
-    %h5= layer.humanize
-    %ul.nav
-      %li
-        .map-icon
-          .base-cluster{ class: layer + ' level1', style: 'display: inline-block; margin-right: 10px;' }
-            %div
-              %span &nbsp;
-        25-30 kW/m
-      %li
-        .map-icon
-          .base-cluster{ class: layer + ' level2', style: 'display: inline-block; margin-right: 10px;' }
-            %div
-              %span &nbsp;
-        30-40 kW/m
-      %li
-        .map-icon
-          .base-cluster{ class: layer + ' level3', style: 'display: inline-block; margin-right: 10px;' }
-            %div
-              %span &nbsp;
-        40-50 kW/m
-      %li
-        .map-icon
-          .base-cluster{ class: layer + ' level4', style: 'display: inline-block; margin-right: 10px;' }
-            %div
-              %span &nbsp;
-        50-56 kW/m
+    %h5
+      %b
+        (
+        %span{ data: { show: layer, property: 'type' }}
+        )
+      Wave Power Density
+      
+      %small{ data: { show: layer, property: 'url' } }
+      
+    %p.legend-text The Wave Energy Resource Assessment project is a joint venture between NREL, EPRI, and Virginia Tech. EPRI is the prime contractor, Virginia Tech is responsible for development of the models and estimating the wave resource, and NREL serves as an independent validator and also develops the final GIS-based display of the data.

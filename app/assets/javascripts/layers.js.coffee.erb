@@ -27,6 +27,16 @@
   },
   
   defs: {
+    'solar': {
+      type: 'wms',
+      url: 'http://mapsdb.nrel.gov/jw_router/ReAtlas_us_tilt_total/tile',
+      layer_name: 'ReAtlas_us_tilt_total'
+    },
+    'wave_power_potential': {
+      type: 'wms',
+      url: 'http://mapsdb.nrel.gov/jw_router/ReAtlas_wave_energy/tile',
+      layer_name: 'ReAtlas_wave_energy'
+    },
     'wells_and_springs': {
       type: 'geojson',
       url: '/data/aedi-data-2013/geothermal.group/hotsprings/Hotsprings_points_2013.geojson',
@@ -362,6 +372,13 @@
     switch def.type
       when 'geojson'
         Layers.fetch(def, map)
+      when 'wms'
+        def.layer = L.tileLayer.wms(def.url, {
+          layers: def.layer_name,
+          format: 'image/png',
+          transparent: true
+        })
+        map.addLayer(def.layer)
       when 'tile'
         def.layer = L.tileLayer(def.url)
         map.addLayer(def.layer)
