@@ -1,8 +1,25 @@
+.layers li {
+  min-height: 32px;
+}
+
 .map-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: inline-block;
   text-align: center;
+  float: left;
+  margin-right: 10px;
+}
+
+.base-cluster {
+  background-clip: padding-box;
+  border-radius: 16px;
+  display: inline-block; 
+  width: 32px !important; 
+  height: 32px !important;
+  &:hover {
+    z-index: 1000000 !important;
+  }
 }
 
 .base-cluster.diamond {
@@ -10,44 +27,52 @@
   transform: rotate(45deg);
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari and Chrome */
-  margin-left: 2px;
-  margin-top: 8px;
 }
 
-.base-cluster {
-  background-clip: padding-box;
-  border-radius: 20px;
-  display: inline-block; 
-  width: 100%; 
-  height: 100%;
-  &:hover {
-    z-index: 1000000 !important;
+.base-cluster.round {
+  border-radius: 16px !important;
+  background-color: #fff;
+  
+  div {
+    border-radius: 16px !important;
   }
 }
+
 .base-cluster div {
-  width: 30px;
-  height: 30px;
-  margin-left: 5px;
-  margin-top: 5px;
+  width: 28px;
+  height: 28px;
+  margin-left: 2px;
+  margin-top: 2px;
 
   text-align: center;
   border-radius: 15px;
-  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font: 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .base-cluster span {
-  line-height: 30px;
+  line-height: 28px;
+  color: #fff;
+  text-shadow: 0px 0px 3px #000;
 }
 
 .tidal_power_potential {
   border-radius: 0;
+  background-color: #FFF;
 
-  &.level1 {
+  width: 24px !important;
+  height: 24px !important;
+  div { width: 20px; height: 20px; border-raidus: 0; }
+  span { line-height: 20px; }
+
+  &.level1 div {
+    border-radius: 0;
     background-color: #8EFFCA;
   }
-  &.level2 {
+  &.level2 div {
+    border-radius: 0;
     background-color: #009387;
   }
-  &.level3 {
+  &.level3 div {
+    border-radius: 0;
     background-color: #297FFF;
   }
 }
@@ -70,16 +95,16 @@
 }
 
 .in_river_power_potential {
-  &.level1 {
-    background-color: #FFD400;
+  &.level1 div {
+    background-color: #FFD320;
   }
-  &.level2 {
+  &.level2 div {
     background-color: #FF9900;
   }
-  &.level3 {
+  &.level3 div {
     background-color: #FF0000;
   }
-  &.level4 {
+  &.level4 div {
     background-color: #7C0000;
   }
 }
@@ -93,8 +118,8 @@
   color: #fff;
   margin: 0;
   padding: 0;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   max-width: 100%;
   span { margin-left: 5px; }
 }
@@ -105,6 +130,12 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  margin:0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  span { line-height: 32px; }  
 }
 
 .hydro {
@@ -113,6 +144,12 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  margin:0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  span { line-height: 32px; }  
 }
 
 .solar_thermal {
@@ -121,6 +158,12 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  margin:0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  span { line-height: 32px; }  
 }
 
 .geothermal {
@@ -129,7 +172,12 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
-  max-width: 100%;
+  margin:0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  span { line-height: 32px; }  
 }
 
 .fish_processor div {
@@ -138,9 +186,8 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
-  color: #fff;
-  width: 61px;
-  height: 17px;
+  width: 61px !important;
+  height: 17px !important;
   margin:0;
   padding: 0;
   max-width: 100%;
@@ -153,6 +200,12 @@
   background-position:center; 
   background-repeat:no-repeat;
   border-radius: 0;  
+  margin:0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  span { line-height: 32px; }
 }
 
 .potential_geothermal {
@@ -162,69 +215,111 @@
   background-color: #FF0000;
 }
 
-.wells_and_springs {
+.wells_and_springs div {
   background-color: #F00000;
   vertical-align: middle;
-  
-  &.level1 {
-    width: 5px;
-    height: 5px;
+}
+
+.wells_and_springs {
+  &.level1 div {
+    width: 8px !important;
+    height: 8px !important;
+    margin-left: 12px;
+    margin-top: 12px;
+  }  
+  &.level2 div {
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 9px;
+    margin-top: 9px;
   }
-  &.level2 {
-    width: 10px;
-    height: 10px;
+  &.level3 div {
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 6px;
+    margin-top: 6px;
   }
-  &.level3 {
-    width: 20px;
-    height: 20px;
+  &.level4 div {
+    width: 26px !important;
+    height: 26px !important;
+    margin-left: 3px;
+    margin-top: 3px;
   }
-  &.level4 {
-    width: 30px;
-    height: 30px;
+  &.level5 div {
+    width: 32px !important;
+    height: 32px !important;
   }
 }
 
 .existing {
-  background-color: #2229BA;
-  vertical-align: middle;
-  
-  &.level1 {
-    width: 5px;
-    height: 5px;
+  span { line-height: 22px; }
+  &.level1 div {
+    border: 2px solid #fff;
+    background-color: #2229BA;
+    width: 8px !important;
+    height: 8px !important;
+    margin-left: 12px;
+    margin-top: 12px;
+  }  
+  &.level2 div {
+    border: 2px solid #fff;
+    background-color: #2229BA;
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 9px;
+    margin-top: 9px;
   }
-  &.level2 {
-    width: 10px;
-    height: 10px;
+  &.level3 div {
+    border: 2px solid #fff;
+    background-color: #2229BA;
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 6px;
+    margin-top: 6px;
   }
-  &.level3 {
-    width: 20px;
-    height: 20px;
-  }
-  &.level4 {
-    width: 30px;
-    height: 30px;
+  &.level4 div {
+    border: 2px solid #fff;
+    background-color: #2229BA;
+    width: 26px !important;
+    height: 26px !important;
+    margin-left: 3px;
+    margin-top: 3px;
   }
 }
 
 .potential {
-  background-color: #66E8FF;
-  vertical-align: middle;
-  
-  &.level1 {
-    width: 5px;
-    height: 5px;
+  span { line-height: 22px; }
+  &.level1 div {
+    border: 2px solid #fff;
+    background-color: #66E8FF;
+    width: 8px !important;
+    height: 8px !important;
+    margin-left: 12px;
+    margin-top: 12px;
+  }  
+  &.level2 div {
+    border: 2px solid #fff;
+    background-color: #66E8FF;
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 9px;
+    margin-top: 9px;
   }
-  &.level2 {
-    width: 10px;
-    height: 10px;
+  &.level3 div {
+    border: 2px solid #fff;
+    background-color: #66E8FF;
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 6px;
+    margin-top: 6px;
   }
-  &.level3 {
-    width: 20px;
-    height: 20px;
-  }
-  &.level4 {
-    width: 30px;
-    height: 30px;
+  &.level4 div {
+    border: 2px solid #fff;
+    background-color: #66E8FF;
+    width: 26px !important;
+    height: 26px !important;
+    margin-left: 3px;
+    margin-top: 3px;
   }
 }
 
@@ -257,9 +352,7 @@
 .ocean_river {
   border-radius: 0;
   background-color: #00F;
-  width: 30px;
-  height: 30px;
-  div { width: 20px; height: 20px; background-color: #66E8FF; border-radius: 0; }
+  div { background-color: #66E8FF; border-radius: 0; }
 }
 
 .heat_recovery {

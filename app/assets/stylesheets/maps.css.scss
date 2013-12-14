@@ -8,12 +8,17 @@
 }
 
 #layers-panel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 350px;
-  overflow: auto;
+  position: relative;
+  height: 100%;
+  
+  .layers {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 350px;
+    overflow: auto;    
+  }
   
   .panel {
     margin: 0;

@@ -2,29 +2,29 @@
   .layer-input
     %input{ type:'checkbox', class: "#{layer}-input", data: { togglelayer: layer } }
   .layer-legend
-    %h5= layer.humanize
+    %h5 Proposed
     %ul.nav
       %li
         .map-icon
-          .base-cluster{ class: layer + ' level1', style: 'display: inline-block; margin-right: 10px;' }
+          .base-cluster{ class: layer + ' level1' }
             %div
               %span &nbsp;
         %lt 0.1 MW
       %li
         .map-icon
-          .base-cluster{ class: layer + ' level2', style: 'display: inline-block; margin-right: 10px;' }
+          .base-cluster{ class: layer + ' level2' }
             %div
               %span &nbsp;
         0.1-1 MW
       %li
         .map-icon
-          .base-cluster{ class: layer + ' level3', style: 'display: inline-block; margin-right: 10px;' }
+          .base-cluster{ class: layer + ' level3' }
             %div
               %span &nbsp;
         1-10 MW
       %li
         .map-icon
-          .base-cluster{ class: layer + ' level4', style: 'display: inline-block; margin-right: 10px;' }
+          .base-cluster{ class: layer + ' level4' }
             %div
               %span &nbsp;
         &gt 10 MW

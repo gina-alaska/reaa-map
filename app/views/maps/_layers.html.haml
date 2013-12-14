@@ -1,8 +1,14 @@
 #layers-accordion.panel-group
   - %w{ Renewable_Energy_Fund_Projects Biomass Geothermal Hydroelectric Ocean_and_River_Hydrokinetic Wind_Power MatSu_2011 }.each do |section|    
     .panel.panel-default
-      .panel-heading{ data: { toggle: "collapse", parent: "#layers-accordion" }, href: "##{section}" }
-        %h5.panel-title
+      .panel-heading
+        .pull-right
+          = link_to '#', data: { behavior: 'show-tab-layers' } do
+            %i.glyphicon.glyphicon-eye-open
+          |
+          = link_to '#', data: { behavior: 'hide-tab-layers' } do
+            %i.glyphicon.glyphicon-eye-close
+        %h5.panel-title{ data: { toggle: "collapse", parent: "#layers-accordion" }, href: "##{section}" }
           %span.glyphicon.glyphicon-folder-close
           = section.gsub('_', ' ')
       .panel-body.layer-group-content.collapse{ id: section }

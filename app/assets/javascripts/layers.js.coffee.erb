@@ -9,18 +9,13 @@
       popupAnchor: [16, -3]
     }),
     
-    for_class: (klass, cluster = null, size = null) ->
-      if size?
-        iconSize = size
-      else
-        iconSize = L.point(40, 40)  
-      
+    for_class: (klass, cluster = null) ->
       if cluster? and cluster.getChildCount?
         text = cluster.getChildCount() 
       else
         text = ''
         
-      return L.divIcon({ html: "<div><span>#{text}</span></div>", className: "base-cluster #{klass}" , iconSize: iconSize })
+      return L.divIcon({ html: "<div><span>#{text}</span></div>", className: "base-cluster #{klass}", iconAnchor: new L.Point(16, 16) })
     
     fish_processor: (cluster = null) ->
       if cluster? and cluster.getChildCount?
@@ -32,6 +27,176 @@
   },
   
   defs: {
+    'wells_and_springs': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/geothermal.group/hotsprings/Hotsprings_points_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 32,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('clustered wells_and_springs', cluster)
+        })
+        markers.addLayer(Layers.for_class('wells_and_springs', geojson, 0, (feature, klass) ->
+          temp = parseInt(feature.properties.TEMPERATUR)
+          switch
+            when temp < 55
+              return 'level1'
+            when temp < 100
+              return 'level2'
+            when temp < 200
+              return 'level3'
+            when temp < 300
+              return 'level4'
+            else
+              return 'level5'
+        ))
+        markers
+    },
+    
+    'potential_geothermal': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/geothermal.group/thermal_areas/thermal_areas.geojson',
+      layout: null,
+      builder: (geojson) =>
+        new L.Proj.geoJson(geojson, {
+          style: {
+            fillColor: "#FF0000",
+            color: "#FF0000",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.4
+          }
+        })
+    },
+    
+    'in_river_power_potential': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/hydrokinetic.group/inriver_potential/inriver_potential.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,          
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('in_river_power_potential level4 round', cluster)
+        })
+        markers.addLayer(Layers.for_class('in_river_power_potential round', geojson, 0, (feature, klass) ->
+          mw = feature.properties.POTENTIAL
+          switch mw
+            when '50-220'
+              return 'level1'
+            when '220-450'
+              return 'level2'
+            when '600-900'
+              return 'level3'
+            when '1600-1700'
+              return 'level4'
+            else
+              # console.log feature.properties
+              return 'level4'
+        ))
+        markers
+    },
+    
+    'tidal_power_potential': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/hydrokinetic.group/tidal_potential/tidal_potential.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 32,          
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('tidal_power_potential level3', cluster)
+        })
+        markers.addLayer(Layers.for_class('tidal_power_potential', geojson, 0, (feature, klass) ->
+          mw = parseInt(feature.properties.EGP_MW)
+          switch
+            when mw < 25
+              return 'level1'
+            when mw < 100
+              return 'level2'
+            when mw < 220
+              return 'level3'
+            else
+              return 'level3'
+        ))
+        markers
+    },
+
+    'existing': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/hydroelectric.group/existing/ak_hydro_existing_from_master_table_20130923.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 24,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('existing level4', cluster)
+        })
+        markers.addLayer(Layers.for_class('existing', geojson, 0, (feature, klass) ->
+          capacity = parseFloat(feature.properties.CapacitykW)
+          switch
+            when capacity  < 0.1
+              return 'level1'
+            when capacity  < 1
+              return 'level2'
+            when capacity  < 10
+              return 'level3'
+            else
+              return 'level4'
+        ))
+        markers
+    },
+    
+    'potential': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/hydroelectric.group/proposed/ak_hydro_investigated_from_master_table_20130823.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 24,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('potential level4', cluster)
+        })
+        markers.addLayer(Layers.for_class('potential', geojson, 0, (feature, klass) ->
+          capacity = parseFloat(feature.properties.CapacitykW)
+          switch
+            when capacity  < 0.1
+              return 'level1'
+            when capacity  < 1
+              return 'level2'
+            when capacity  < 10
+              return 'level3'
+            else
+              return 'level4'
+        ))
+        markers
+    },
+    
+    'volcanoes': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/geothermal.group/volcano/VolcanicVents_points_2013.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('volcanoes', cluster)
+        })
+        markers.addLayer(Layers.for_class('volcanoes', geojson))
+        markers
+    },
+    'landfills': {
+      type: 'geojson',
+      url: '/data/aedi-data-2013/biomass/landfills/landfills.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('landfills', cluster)
+        })
+        markers.addLayer(Layers.for_class('landfills', geojson))
+        markers
+    },
     'biomass-refp': {
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/biomass-renewable_energy_fund_sites_2013.geojson',
@@ -112,9 +277,9 @@
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
           iconCreateFunction: (cluster) ->
-            Layers.icons.for_class('ocean_river diamond', cluster, L.point(30, 30))
+            Layers.icons.for_class('ocean_river diamond', cluster)
         })
-        markers.addLayer(Layers.for_class('ocean_river diamond', geojson, 45, L.point(30, 30)))
+        markers.addLayer(Layers.for_class('ocean_river diamond', geojson, 45))
         markers
     },
     'heat_recovery-refp': {
@@ -220,16 +385,24 @@
           layer.bindPopup(feature.properties.popup_content)
     })
     
-  for_class: (klass, geojson, angle = 0, iconSize = null) ->
+  for_class: (klass, geojson, angle = 0, styler = null) ->
     L.Proj.geoJson(geojson, {
-      pointToLayer:  (feature, latlng) =>
+      pointToLayer:  (feature, latlng) =>    
+        extended_style = ''    
+        if styler?
+          extended_style = styler(feature, klass)
+      
         L.rotatedMarker(latlng, {
-          icon: Layers.icons.for_class(klass, null, iconSize),
+          icon: Layers.icons.for_class("#{klass} #{extended_style}", null),
           angle: angle
         })
           
       onEachFeature: (feature, layer) =>
-        if feature.properties? and feature.properties.popup_content?
-          layer.bindPopup(feature.properties.popup_content)
+        if feature.properties?
+          if feature.properties.popup_content?
+            layer.bindPopup(feature.properties.popup_content)
+          else if feature.properties.NAME
+            layer.bindPopup(feature.properties.NAME)
+            
     })
 }

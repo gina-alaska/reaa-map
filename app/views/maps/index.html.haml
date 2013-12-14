@@ -1,5 +1,6 @@
-#layers-panel
-  = render 'layers'
+#layers-panel{ data: { 'no-turbolink' => '' } }
+  .layers
+    = render 'layers'
 #map-panel
   #map
     #progress-container
@@ -13,12 +14,32 @@
     $('#map').data('map_container', map_container);
     
     $('[href="##{default_section}"]').click();
-    $('[href="##{default_section}"]').parent().find('input[type="checkbox"]').click();
+    $('[href="##{default_section}"]').parents('.panel').find('[data-togglelayer]:not(:checked)').click();
     
     $('[data-show]').each(function(item) {
       var layer = $(this).data('show')
       $(this).append(Layers.defs[layer][$(this).data('property')])
     })
+  });
+  
+  $(document).on('click', '[data-behavior="deselect-all"]', function(e) {
+    $('[data-togglelayer]').each(function() {
+      if ($(this).is(':checked')) { $(this).click(); }
+    })
+  });
+  
+  $(document).on('click', '[data-behavior="toggle-visible"]', function(e) {
+    $('[data-togglelayer]:visible').each(function() {
+      $(this).click();
+    })
+  });
+  
+  $(document).on('click', '[data-behavior="show-tab-layers"]', function(e) {
+    $(this).parents('.panel').find('[data-togglelayer]:not(:checked)').click();
+  });
+  
+  $(document).on('click', '[data-behavior="hide-tab-layers"]', function(e) {
+    $(this).parents('.panel').find('[data-togglelayer]:checked').click();
   });
   
   $(document).on('click', '[data-togglelayer]', function(e) {
