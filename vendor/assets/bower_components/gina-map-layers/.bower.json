@@ -1,0 +1,34 @@
+{
+  "name": "gina-map-layers",
+  "version": "1.0.1",
+  "homepage": "https://github.com/gina-alaska/gina-map-layers",
+  "authors": [
+    "Will Fisher <will@gina.alaska.edu>"
+  ],
+  "description": "JS Library for loading gina tile and wms layers into various map apis",
+  "keywords": [
+    "openlayers",
+    "leaflet",
+    "googlemaps",
+    "gina",
+    "bdl"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.1",
+    "commit": "a6967acc2f6c31b6aceecbefb6df6862f872963e"
+  },
+  "_source": "git://github.com/gina-alaska/gina-map-layers.git",
+  "_target": "1.0.1",
+  "_originalSource": "gina-alaska/gina-map-layers",
+  "_direct": true
+}

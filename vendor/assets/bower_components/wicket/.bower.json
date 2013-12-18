@@ -1,0 +1,11 @@
+{
+  "name": "wicket",
+  "_cacheHeaders": {
+    "Content-Length": "46374",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=Wicket-1.0.zip"
+  },
+  "_source": "https://github.com/arthur-e/Wicket/archive/v1.0.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/arthur-e/Wicket/archive/v1.0.zip"
+}

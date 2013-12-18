@@ -7,10 +7,19 @@ class @Map
     
     @map = L.map(@selector, {
     }).setView([64.8595627003585, -147.84934364372472], 4)
+
+    baselayers = {}
+    overlays = {}
     
-    L.tileLayer('http://tiles.gina.alaska.edu/tilesrv/bdl/tile/{x}/{y}/{z}', {
-      maxZoom: 15
-    }).addTo(@map);
+    for layer in Gina.Layers.find('TILE.EPSG:3857.*', true)
+      if layer.layerOptions.isBaseLayer
+        baselayers[layer.name] = layer.instance
+      else
+        overlays[layer.name] = layer.instance
+        
+
+    L.control.layers(baselayers, overlays).addTo(@map)
+    @map.addLayer(Gina.Layers.get('TILE.EPSG:3857.BDL'))
     
     @map.whenReady(when_ready_func, @) if when_ready_func? 
   clearMarkers: =>

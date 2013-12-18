@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-/vendor/assets/bower_components
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
