@@ -10,7 +10,7 @@ namespace :assets do
       # Resolve paths in CSS file if it contains a url
       if contents =~ url_regex
         directory_path = Pathname.new(File.dirname(filename))
-          .relative_path_from(Pathname.new('bower_components'))
+          .relative_path_from(Pathname.new('vendor/assets/bower_components'))
 
         # Replace relative paths in URLs with Rails asset_path helper
         new_contents = contents.gsub(url_regex) do |match|
@@ -28,3 +28,5 @@ namespace :assets do
     end
   end  
 end
+
+Rake::Task['assets:precompile'].enhance ['assets:resolve_asset_paths']
