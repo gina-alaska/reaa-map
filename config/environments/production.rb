@@ -60,6 +60,7 @@ ReaaMap::Application.configure do
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
+  config.assets.path << Rails.root.join('vendor/assets/bower_components')
   config.assets.precompile << lambda do |path, filename|
     exts = %w(.sh .html .json .txt .md .js .css .license .map)
     exclude_paths = /(tests|test|doc|example|examples)/
