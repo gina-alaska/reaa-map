@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/42dev/bower-rails.git
-  revision: 1c6e9ccc23da715650ff478ceab6c74a575fd386
-  specs:
-    bower-rails (0.5.0)
-
-GIT
   remote: git://github.com/capistrano/chruby.git
   revision: 055520d5d2c6c17b5a0df7a172346046cb63b679
   specs:
@@ -155,7 +149,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bower-rails!
   capistrano (~> 3.0.1)
   capistrano-bundler
   capistrano-chruby!
