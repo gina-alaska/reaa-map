@@ -1,3 +1,15 @@
+try
+  formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  })
+  @currency_formatter = formatter.format
+catch
+  @currency_formatter = (number) ->
+    '$' + parseFloat(number).toFixed(2)
+
+
 @Layers = {
   map: null,
   
@@ -449,10 +461,19 @@
               popup += "<h5>#{feature.properties.NAME}</h5>"
             else if feature.properties.Project
               popup += "<h5>#{feature.properties.Project}</h5>"
-              
+            
+            otherfields = ''
             if feature.properties.RptLink
-              popup += "<p><a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a></p>"
-              
+              otherfields += "<a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a><br/>"
+
+            if feature.properties.LOCATION
+              otherfields  += "<b>Location: </b>#{feature.properties.LOCATION}<br/>"
+
+            if feature.properties.PROJECT_CO
+              otherfields  += "<b>Project Cost: </b>#{currency_formatter(feature.properties.PROJECT_CO)}</br>"
+
+            popup += "<p>#{otherfields}</p>" if otherfields.length > 0
+            
             if popup.length > 0
               layer.bindPopup(popup) 
             
