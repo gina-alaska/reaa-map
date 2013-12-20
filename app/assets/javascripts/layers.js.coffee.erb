@@ -28,16 +28,19 @@
   
   defs: {
     'solar': {
+      name: 'Solar',
       type: 'wms',
       url: 'http://mapsdb.nrel.gov/jw_router/ReAtlas_us_tilt_total/tile',
       layer_name: 'ReAtlas_us_tilt_total'
     },
     'wave_power_potential': {
+      name: 'Ocean and River Hydrokinetic - Wave Power Density',
       type: 'wms',
       url: 'http://mapsdb.nrel.gov/jw_router/ReAtlas_wave_energy/tile',
       layer_name: 'ReAtlas_wave_energy'
     },
     'wells_and_springs': {
+      name: 'Wells and Springs',
       type: 'geojson',
       url: '/data/aedi-data-2013/geothermal.group/hotsprings/Hotsprings_points_2013.geojson',
       layout: null,
@@ -65,6 +68,7 @@
     },
     
     'potential_geothermal': {
+      name: 'Geothermal - Potential',
       type: 'geojson',
       url: '/data/aedi-data-2013/geothermal.group/thermal_areas/thermal_areas.geojson',
       layout: null,
@@ -81,6 +85,7 @@
     },
     
     'in_river_power_potential': {
+      name: 'Ocean and River Hydrokinetic - In-River Power Potential',
       type: 'geojson',
       url: '/data/aedi-data-2013/hydrokinetic.group/inriver_potential/inriver_potential.geojson',
       layout: null,
@@ -109,6 +114,7 @@
     },
     
     'tidal_power_potential': {
+      name: 'Ocean and River Hydrokinetic - Tidal Power Potential',
       type: 'geojson',
       url: '/data/aedi-data-2013/hydrokinetic.group/tidal_potential/tidal_potential.geojson',
       layout: null,
@@ -134,6 +140,7 @@
     },
 
     'existing': {
+      name: 'Hydroelectric - Existing',
       type: 'geojson',
       url: '/data/aedi-data-2013/hydroelectric.group/existing/ak_hydro_existing_from_master_table_20130923.geojson',
       layout: null,
@@ -158,7 +165,8 @@
         markers
     },
     
-    'potential': {
+    'investigation': {
+      name: 'Hydroelectric - Investigated',
       type: 'geojson',
       url: '/data/aedi-data-2013/hydroelectric.group/proposed/ak_hydro_investigated_from_master_table_20130823.geojson',
       layout: null,
@@ -166,9 +174,9 @@
         markers = new L.MarkerClusterGroup({
           maxClusterRadius: 24,
           iconCreateFunction: (cluster) ->
-            Layers.icons.for_class('potential level4', cluster)
+            Layers.icons.for_class('investigation level4', cluster)
         })
-        markers.addLayer(Layers.for_class('potential', geojson, 0, (feature, klass) ->
+        markers.addLayer(Layers.for_class('investigation', geojson, 0, (feature, klass) ->
           capacity = parseFloat(feature.properties.CapacitykW)
           switch
             when capacity  < 0.1
@@ -184,6 +192,7 @@
     },
     
     'volcanoes': {
+      name: 'Geothermal - Volcanoes',
       type: 'geojson',
       url: '/data/aedi-data-2013/geothermal.group/volcano/VolcanicVents_points_2013.geojson',
       layout: null,
@@ -196,6 +205,7 @@
         markers
     },
     'landfills': {
+      name: 'Biomass - Landfills',
       type: 'geojson',
       url: '/data/aedi-data-2013/biomass/landfills/landfills.geojson',
       layout: null,
@@ -208,6 +218,7 @@
         markers
     },
     'biomass-refp': {
+      name: 'Renewable Energy Fund Project - Biomass',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/biomass-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -219,7 +230,9 @@
         markers.addLayer(Layers.for_class('biomass', geojson))
         markers
     },
+  
     'geothermal-refp': {
+      name: 'Renewable Energy Fund Project - Geothermal',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/geothermal-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -232,6 +245,7 @@
         markers
     },
     'hydro-refp': {
+      name: 'Renewable Energy Fund Project - Hydro',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/hydro-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -244,6 +258,7 @@
         markers
     },
     'wind-refp': {
+      name: 'Renewable Energy Fund Project - Wind',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/wind-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -256,6 +271,7 @@
         markers
     },
     'transmission-refp': {
+      name: 'Renewable Energy Fund Project - Transmission',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/transmission-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -268,6 +284,7 @@
         markers
     },
     'solar_thermal-refp': {
+      name: 'Renewable Energy Fund Project - Solar',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/solar_thermal-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -281,6 +298,7 @@
     },
     
     'ocean_river-refp': {
+      name: 'Renewable Energy Fund Project - Ocean/River',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/oceanriver-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -293,6 +311,7 @@
         markers
     },
     'heat_recovery-refp': {
+      name: 'Renewable Energy Fund Project - Heat Recovery',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/heat_recovery-renewable_energy_fund_sites_2013.geojson',
       layout: null,
@@ -305,6 +324,7 @@
         markers
     },
     'sawmills': { 
+      name: 'Biomass - Sawmills',
       type: 'geojson',
       url: '/data/aedi-data-2013/biomass/sawmills/sawmills.geojson', 
       layer: null,
@@ -317,6 +337,7 @@
         markers
     },
     'fish_processor': {
+      name: 'Biomass - Fish Processor',
       type: 'geojson',
       url: '/data/aedi-data-2013/biomass/fish_processors/fish_processors.geojson', 
       layer: null,
@@ -328,26 +349,31 @@
         markers
     },
     'wind_power': {
+      name: 'Wind Power'
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tilesrv/aea_wind_google/tile/{x}/{y}/{z}',
       layer: null
     },
     'woody_biomass': {
+      name: 'Biomass - Woody',
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tiles/aea_forest_biomass_google/tile/{x}/{y}/{z}',
       layer: null
     },
     'MatSu_2011_RGB': {
+      name: 'MatSu 2011 RGB WMS',
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_rgb/tile/{x}/{y}/{z}',
       layer: null
     },
     'MatSu_2011_NIR': {
+      name: 'MatSu 2011 NIR WMS',
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_nir/tile/{x}/{y}/{z}',
       layer: null
     },
     'MatSu_2011_LiDAR_Hillshade': {
+      name: 'MatSu 2011 LiDAR Hillshade WMS',
       type: 'tile',
       url: 'http://tiles.gina.alaska.edu/tilesrv/matsu_dem/tile/{x}/{y}/{z}',
       layer: null
@@ -378,17 +404,16 @@
           format: 'image/png',
           transparent: true
         })
-        map.addLayer(def.layer)
+        map.addLayer(def.layer, def.name)
       when 'tile'
         def.layer = L.tileLayer(def.url)
-        map.addLayer(def.layer)
+        map.addLayer(def.layer, def.name)
       
   
   fetch: (def, map) =>
     $.getJSON def.url, (data) => 
       def.layer = def.builder(data)
-      def.layer.on('')
-      map.addLayer def.layer
+      map.addLayer def.layer, def.name
   
   fish_processors: (geojson) ->
     L.Proj.geoJson(geojson, {

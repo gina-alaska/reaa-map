@@ -44,7 +44,7 @@
   
   $(document).on('click', '[data-togglelayer]', function(e) {
     var name = $(this).data('togglelayer');
-    var status = Layers.toggle(name, map_container.map);
+    var status = Layers.toggle(name, map_container);
     $('.' + name + '-input').prop('checked', status)
   });
   
