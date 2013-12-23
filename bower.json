@@ -1,0 +1,27 @@
+{
+  "name": "reaa-map",
+  "version": "1.0.0",
+  "homepage": "https://github.com/gina-alaska/reaa-map",
+  "authors": [
+    "Will Fisher <will@teknofire.net>"
+  ],
+  "description": "Reaa-map",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "https://github.com/twbs/bootstrap.git",
+    "gina-map-layers": "https://github.com/gina-alaska/gina-map-layers.git#~1.0.2",
+    "leaflet": "http://leaflet-cdn.s3.amazonaws.com/build/leaflet-0.7.zip",
+    "markerclusters": "https://github.com/Leaflet/Leaflet.markercluster.git",
+    "proj4leaflet": "https://github.com/kartena/Proj4Leaflet.git",
+    "wicket": "https://github.com/arthur-e/Wicket/archive/v1.0.zip"
+  }
+}

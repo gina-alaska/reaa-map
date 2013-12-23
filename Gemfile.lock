@@ -6,6 +6,12 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.2.0)
 
+GIT
+  remote: git://github.com/gina-alaska/bower-tools.git
+  revision: 85cb693713b8ff4c1daf408cf0e8e55f3a15aae1
+  specs:
+    bower-tools (0.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,6 +155,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bower-tools!
   capistrano (~> 3.0.1)
   capistrano-bundler
   capistrano-chruby!
