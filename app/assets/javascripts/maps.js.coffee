@@ -19,7 +19,10 @@ class @Map
     }
 
     overlays = []
-    @layers_control = L.control.layers(baseLayers, overlays).addTo(@map);
+    @layers_control = L.control.layers(baseLayers, overlays, {
+      autoZIndex: false,
+      collapsed: false
+    }).addTo(@map);
 
     
     @map.whenReady(when_ready_func, @) if when_ready_func? 
@@ -33,6 +36,7 @@ class @Map
   
   addLayer: (layer, name, base = false) =>
     @map.addLayer(layer, base)
+    layer.bringToFront()
     
   addOverlay: (layer, name) =>
     @map.addLayer(layer)
