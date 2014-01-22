@@ -7,8 +7,20 @@ class @Map
     
     @map = L.map(@selector, {
     }).setView([64.8595627003585, -147.84934364372472], 4)
-
+    
     @map.addLayer(Gina.Layers.get('TILE.EPSG:3857.BDL'), true)
+
+    baseLayers = {
+      'GINA\'s Best Data Layer': Gina.Layers.get('TILE.EPSG:3857.BDL'),
+      'USGS Topographic DRG': Gina.Layers.get('TILE.EPSG:3857.TOPO'),
+      'NOAA Nautical Charts DRG': Gina.Layers.get('TILE.EPSG:3857.CHARTS'),
+      'GINA Shaded Relief (NED)': Gina.Layers.get('TILE.EPSG:3857.SHADED_RELIEF'),
+      'Panchromatic Landsat': Gina.Layers.get('TILE.EPSG:3857.LANDSAT_PAN')
+    }
+
+    overlays = []
+    @layers_control = L.control.layers(baseLayers, overlays).addTo(@map);
+
     
     @map.whenReady(when_ready_func, @) if when_ready_func? 
   
