@@ -2,12 +2,8 @@
   - %w{ Renewable_Energy_Fund_Projects Biomass Geothermal Hydroelectric Ocean_and_River_Hydrokinetic Wind_Power Solar }.each do |section|    
     .panel.panel-default
       .panel-heading
-        .pull-right
-          = link_to '#', data: { behavior: 'show-tab-layers' } do
-            %i.glyphicon.glyphicon-eye-open
-          |
-          = link_to '#', data: { behavior: 'hide-tab-layers' } do
-            %i.glyphicon.glyphicon-eye-close
+        = link_to '#', data: { behavior: 'toggle-tab-layers' }, class: 'pull-left', style: 'margin-right: 10px;' do
+          %i.glyphicon.glyphicon-unchecked
         %h5.panel-title{ data: { toggle: "collapse", parent: "#layers-accordion" }, href: "##{section}" }
           %span.glyphicon.glyphicon-folder-close
           = section.gsub('_', ' ')

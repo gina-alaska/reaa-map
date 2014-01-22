@@ -34,6 +34,10 @@
     })
   });
   
+  $(document).on('click', '[data-behavior="toggle-tab-layers"]', function(e) {
+    $(this).parents('.panel').find('[data-togglelayer]').click();    
+  });
+  
   $(document).on('click', '[data-behavior="show-tab-layers"]', function(e) {
     $(this).parents('.panel').find('[data-togglelayer]:not(:checked)').click();
   });
@@ -45,7 +49,15 @@
   $(document).on('click', '[data-togglelayer]', function(e) {
     var name = $(this).data('togglelayer');
     var status = Layers.toggle(name, map_container);
-    $('.' + name + '-input').prop('checked', status)
+    $('.' + name + '-input').prop('checked', status);
+    
+    var icon = $(this).parents('.panel').find('i.glyphicon');
+    
+    if($(this).parents('.panel').find('[data-togglelayer]:checked').length > 0) {
+      icon.removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+    } else {
+      icon.removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+    }
   });
   
   $(document).on('click', '#layers-accordion [data-toggle="collapse"]', function() {
