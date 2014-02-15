@@ -23,12 +23,12 @@ html, body {
 }
 
 #header {
-  background-color: #0048A9;
+  background-color: #6e985c;
   color: #fff;
   height: 40px;
   margin:0;
   padding: 0 20px;
-  border-bottom: 1px solid #00f;
+  border-bottom: 1px solid #6e985c;
 }
 
 #content {
