@@ -22,6 +22,7 @@
     "leaflet": "http://leaflet-cdn.s3.amazonaws.com/build/leaflet-0.7.zip",
     "markerclusters": "https://github.com/Leaflet/Leaflet.markercluster.git",
     "proj4leaflet": "https://github.com/kartena/Proj4Leaflet.git",
-    "wicket": "https://github.com/arthur-e/Wicket/archive/v1.0.zip"
+    "wicket": "https://github.com/arthur-e/Wicket/archive/v1.0.zip",
+    "mapbox.js": "~1.6.1"
   }
 }

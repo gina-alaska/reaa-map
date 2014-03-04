@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require leaflet/leaflet-src
+//= require mapbox.js/dist/mapbox.js
 //= require gina-map-layers/adapters/leaflet.js
 //= require markerclusters/dist/leaflet.markercluster
 //= require wicket/wicket
