@@ -7,10 +7,14 @@ class @Map
     
     @map = L.map(@selector, {
     }).setView([64.8595627003585, -147.84934364372472], 4)
+    L.mapbox.tileLayer('gina-alaska.heb1gpfg').addTo(@map)
     
     baseLayers = {
       'Terrain': L.mapbox.tileLayer('gina-alaska.heb1gpfg')
-      'OpenStreetMap': L.mapbox.tileLayer('gina-alaska.heao57f1')
+      'GINA BDL': Gina.Layers.get('TILE.EPSG:3857.BDL')
+      'USGS Topographic DRG': Gina.Layers.get('TILE.EPSG:3857.TOPO')
+      'Nautical Charts': Gina.Layers.get('TILE.EPSG:3857.CHARTS')
+      'Open Street Maps': L.mapbox.tileLayer('gina-alaska.heao57f1')
     }
     @map.addLayer(baseLayers['Terrain'], true)
 
