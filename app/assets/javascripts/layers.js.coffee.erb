@@ -243,17 +243,17 @@ catch
         markers
     },
   
-    'geothermal-refp': {
-      name: 'Renewable Energy Fund Project - Geothermal',
+    'heatpumps-refp': {
+      name: 'Renewable Energy Fund Project - Heat Pumps',
       type: 'geojson',
       url: '/data/aedi-data-2013/renewable_energy_fund_sites/geothermal-renewable_energy_fund_sites_2013.geojson',
       layout: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
           iconCreateFunction: (cluster) ->
-            Layers.icons.for_class('geothermal', cluster)
+            Layers.icons.for_class('heatpumps', cluster)
         })
-        markers.addLayer(Layers.for_class('geothermal', geojson))
+        markers.addLayer(Layers.for_class('heatpumps', geojson))
         markers
     },
     'hydro-refp': {
