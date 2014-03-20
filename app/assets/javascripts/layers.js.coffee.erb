@@ -229,6 +229,128 @@ catch
         markers.addLayer(Layers.for_class('landfills', geojson))
         markers
     },
+    
+    'biomass-project-highlights': {
+      name: '2013 Project Highlights - Biomass',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/biomass-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('biomass', cluster)
+        })
+        markers.addLayer(Layers.for_class('biomass', geojson))
+        markers
+    },    
+    
+    'landfill_biomass-project-highlights': {
+      name: '2013 Project Highlights - Landfill biomass',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/landfill_biomass-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('biomass', cluster)
+        })
+        markers.addLayer(Layers.for_class('biomass', geojson))
+        markers
+    },
+    
+    'heatpumps-project-highlights': {
+      name: '2013 Project Highlights - Heat pumps',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/geothermal-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('heatpumps', cluster)
+        })
+        markers.addLayer(Layers.for_class('heatpumps', geojson))
+        markers
+    },     
+
+    'heat_recovery-project-highlights': {
+      name: '2013 Project Highlights - Heat recovery',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/heat_recovery-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('heat_recovery', cluster)
+        })
+        markers.addLayer(Layers.for_class('heat_recovery', geojson))
+        markers
+    },  
+          
+    'hydro-project-highlights': {
+      name: '2013 Project Highlights - Hydro',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/hydro-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('hydro', cluster)
+        })
+        markers.addLayer(Layers.for_class('hydro', geojson))
+        markers
+    },        
+    
+    'landfill_biomass-project-highlights': {
+      name: '2013 Project Highlights - Landfill biomass',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/landfill_biomass-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('landfill_biomass', cluster)
+        })
+        markers.addLayer(Layers.for_class('landfill_biomass', geojson))
+        markers
+    },    
+    
+    
+    'transmission-project-highlights': {
+      name: '2013 Project Highlights - Transmission',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/transmission-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('transmission', cluster)
+        })
+        markers.addLayer(Layers.for_class('transmission', geojson))
+        markers
+    },
+    
+    'wind-project-highlights': {
+      name: '2013 Project Highlights - Win',
+      type: 'geojson',
+      url: '/data/aedi-data-2013/renewable_energy_fund_sites/wind-aea_ref_2013_story_map.geojson',
+      layout: null,
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('wind', cluster)
+        })
+        markers.addLayer(Layers.for_class('wind', geojson))
+        markers
+    }, 
+    
     'biomass-refp': {
       name: 'Renewable Energy Fund Project - Biomass',
       type: 'geojson',
@@ -463,6 +585,12 @@ catch
               popup += "<h5>#{feature.properties.Project}</h5>"
             
             otherfields = ''
+            if feature.properties.path
+              otherfields += "<img src=\"#{feature.properties.path}\" style=\"width: 250px;\" /><br/>"
+              
+            if feature.properties.Summary
+              otherfields += "<a href=\"#{feature.properties.Summary}\" target=\"_blank\">Summary</a><br/>"
+            
             if feature.properties.RptLink
               otherfields += "<a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a><br/>"
 

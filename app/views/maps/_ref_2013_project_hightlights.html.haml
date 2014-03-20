@@ -1,0 +1,3 @@
+%ul.nav
+  - %w{ biomass landfill_biomass heatpumps heat_recovery hydro transmission wind }.each do |layer|
+    = render "/maps/project_highlights/#{layer.downcase}", layer: layer
