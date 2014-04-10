@@ -12,7 +12,7 @@ catch
 
 @Layers = {
   map: null,
-  
+
   icons: {
     coal: L.icon({
       iconUrl: '<%= image_path("icons/coal-32.png") %>',
@@ -20,24 +20,24 @@ catch
       iconAnchor: [16, 16],
       popupAnchor: [16, -3]
     }),
-    
+
     for_class: (klass, cluster = null) ->
       if cluster? and cluster.getChildCount?
-        text = cluster.getChildCount() 
+        text = cluster.getChildCount()
       else
         text = ''
-        
+
       return L.divIcon({ html: "<div><span>#{text}</span></div>", className: "base-cluster #{klass}", iconAnchor: new L.Point(16, 16) })
-    
+
     fish_processor: (cluster = null) ->
       if cluster? and cluster.getChildCount?
-        text = cluster.getChildCount() 
+        text = cluster.getChildCount()
       else
         text = ''
-        
+
       return L.divIcon({ html: "<div><span>#{text}</span></div>", className: 'base-cluster fish_processor', iconSize: new L.Point(61, 17), iconAnchor: new L.Point(30, 8) })
   },
-  
+
   defs: {
     'solar': {
       name: 'Solar',
@@ -78,7 +78,7 @@ catch
         ))
         markers
     },
-    
+
     'potential_geothermal': {
       name: 'Geothermal - Potential',
       type: 'geojson',
@@ -95,7 +95,7 @@ catch
           }
         })
     },
-    
+
     'in_river_power_potential': {
       name: 'Ocean and River Hydrokinetic - In-River Power Potential',
       type: 'geojson',
@@ -103,7 +103,7 @@ catch
       layout: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
-          maxClusterRadius: 20,          
+          maxClusterRadius: 20,
           iconCreateFunction: (cluster) ->
             Layers.icons.for_class('in_river_power_potential level4 round', cluster)
         })
@@ -124,7 +124,7 @@ catch
         ))
         markers
     },
-    
+
     'tidal_power_potential': {
       name: 'Ocean and River Hydrokinetic - Tidal Power Potential',
       type: 'geojson',
@@ -132,7 +132,7 @@ catch
       layout: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
-          maxClusterRadius: 32,          
+          maxClusterRadius: 32,
           iconCreateFunction: (cluster) ->
             Layers.icons.for_class('tidal_power_potential level3', cluster)
         })
@@ -176,7 +176,7 @@ catch
         ))
         markers
     },
-    
+
     'investigation': {
       name: 'Hydroelectric - Investigated',
       type: 'geojson',
@@ -202,7 +202,7 @@ catch
         ))
         markers
     },
-    
+
     'volcanoes': {
       name: 'Geothermal - Volcanoes',
       type: 'geojson',
@@ -229,7 +229,7 @@ catch
         markers.addLayer(Layers.for_class('landfills', geojson))
         markers
     },
-    
+
     'biomass-project-highlights': {
       name: '2013 Project Highlights - Biomass',
       type: 'geojson',
@@ -243,8 +243,8 @@ catch
         })
         markers.addLayer(Layers.for_class('biomass', geojson))
         markers
-    },    
-    
+    },
+
     'landfill_biomass-project-highlights': {
       name: '2013 Project Highlights - Landfill biomass',
       type: 'geojson',
@@ -259,7 +259,7 @@ catch
         markers.addLayer(Layers.for_class('biomass', geojson))
         markers
     },
-    
+
     'heatpumps-project-highlights': {
       name: '2013 Project Highlights - Heat pumps',
       type: 'geojson',
@@ -273,7 +273,7 @@ catch
         })
         markers.addLayer(Layers.for_class('heatpumps', geojson))
         markers
-    },     
+    },
 
     'heat_recovery-project-highlights': {
       name: '2013 Project Highlights - Heat recovery',
@@ -288,8 +288,8 @@ catch
         })
         markers.addLayer(Layers.for_class('heat_recovery', geojson))
         markers
-    },  
-          
+    },
+
     'hydro-project-highlights': {
       name: '2013 Project Highlights - Hydro',
       type: 'geojson',
@@ -303,8 +303,8 @@ catch
         })
         markers.addLayer(Layers.for_class('hydro', geojson))
         markers
-    },        
-    
+    },
+
     'landfill_biomass-project-highlights': {
       name: '2013 Project Highlights - Landfill biomass',
       type: 'geojson',
@@ -318,9 +318,9 @@ catch
         })
         markers.addLayer(Layers.for_class('landfill_biomass', geojson))
         markers
-    },    
-    
-    
+    },
+
+
     'transmission-project-highlights': {
       name: '2013 Project Highlights - Transmission',
       type: 'geojson',
@@ -335,7 +335,7 @@ catch
         markers.addLayer(Layers.for_class('transmission', geojson))
         markers
     },
-    
+
     'wind-project-highlights': {
       name: '2013 Project Highlights - Win',
       type: 'geojson',
@@ -349,8 +349,8 @@ catch
         })
         markers.addLayer(Layers.for_class('wind', geojson))
         markers
-    }, 
-    
+    },
+
     'biomass-refp': {
       name: 'Renewable Energy Fund Project - Biomass',
       type: 'geojson',
@@ -364,7 +364,7 @@ catch
         markers.addLayer(Layers.for_class('biomass', geojson))
         markers
     },
-  
+
     'heatpumps-refp': {
       name: 'Renewable Energy Fund Project - Heat Pumps',
       type: 'geojson',
@@ -430,7 +430,7 @@ catch
         markers.addLayer(Layers.for_class('solar_thermal', geojson))
         markers
     },
-    
+
     'ocean_river-refp': {
       name: 'Renewable Energy Fund Project - Ocean/River',
       type: 'geojson',
@@ -457,10 +457,10 @@ catch
         markers.addLayer(Layers.for_class('heat_recovery', geojson))
         markers
     },
-    'sawmills': { 
+    'sawmills': {
       name: 'Biomass - Sawmills',
       type: 'geojson',
-      url: '/data/aedi-data-2013/biomass/sawmills/sawmills.geojson', 
+      url: '/data/aedi-data-2013/biomass/sawmills/sawmills.geojson',
       layer: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
@@ -473,7 +473,7 @@ catch
     'fish_processor': {
       name: 'Biomass - Fish Processor',
       type: 'geojson',
-      url: '/data/aedi-data-2013/biomass/fish_processors/fish_processors.geojson', 
+      url: '/data/aedi-data-2013/biomass/fish_processors/fish_processors.geojson',
       layer: null,
       builder: (geojson) =>
         markers = new L.MarkerClusterGroup({
@@ -513,10 +513,10 @@ catch
       layer: null
     }
   },
-  
+
   toggle: (name, map) =>
     return false unless Layers.defs[name]?
-    
+
     if Layers.defs[name].layer?
       if map.hasLayer(Layers.defs[name].layer)
         map.removeLayer(Layers.defs[name].layer)
@@ -527,7 +527,7 @@ catch
     else
       Layers.build_layer(Layers.defs[name], map)
       return true
-      
+
   build_layer: (def, map) =>
     switch def.type
       when 'geojson'
@@ -542,68 +542,73 @@ catch
       when 'tile'
         def.layer = L.tileLayer(def.url)
         map.addLayer(def.layer, def.name)
-      
-  
+
+
   fetch: (def, map) =>
-    $.getJSON def.url, (data) => 
+    $.getJSON def.url, (data) =>
       def.layer = def.builder(data)
       map.addLayer def.layer, def.name
-  
+
   fish_processors: (geojson) ->
     L.Proj.geoJson(geojson, {
       pointToLayer:  (feature, latlng) =>
         L.marker(latlng, {
           icon: Layers.icons.fish_processor()
         })
-          
+
       onEachFeature: (feature, layer) =>
         if feature.properties? and feature.properties.popup_content?
           layer.bindPopup(feature.properties.popup_content)
     })
-    
+
   for_class: (klass, geojson, angle = 0, styler = null) ->
     L.Proj.geoJson(geojson, {
-      pointToLayer:  (feature, latlng) =>    
-        extended_style = ''    
+      pointToLayer:  (feature, latlng) =>
+        extended_style = ''
         if styler?
           extended_style = styler(feature, klass)
-      
+
         L.rotatedMarker(latlng, {
           icon: Layers.icons.for_class("#{klass} #{extended_style}", null),
           angle: angle
         })
-          
+
       onEachFeature: (feature, layer) =>
         if feature.properties?
           if feature.properties.popup_content?
             layer.bindPopup(feature.properties.popup_content)
-          else 
-            popup = ""
-            if feature.properties.NAME
-              popup += "<h5>#{feature.properties.NAME}</h5>"
-            else if feature.properties.Project
-              popup += "<h5>#{feature.properties.Project}</h5>"
-            
+          else
             otherfields = ''
-            if feature.properties.path
-              otherfields += "<img src=\"#{feature.properties.path}\" style=\"width: 250px;\" /><br/>"
-              
-            if feature.properties.Summary
-              otherfields += "<a href=\"#{feature.properties.Summary}\" target=\"_blank\">Summary</a><br/>"
-            
-            if feature.properties.RptLink
-              otherfields += "<a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a><br/>"
 
-            if feature.properties.LOCATION
-              otherfields  += "<b>Location: </b>#{feature.properties.LOCATION}<br/>"
+            if feature.properties.path
+              otherfields += "<img src=\"#{feature.properties.path}\" style=\"width:300px;\" /><br/>"
+
+            otherfields += "<div style='padding: 5px;'>";
+            for field in ['NAME', 'Project','name']
+              if feature.properties[field]?
+                otherfields += "<h5>#{feature.properties[field]}</h5>"
+
+            for field in ['LOCATION', 'location']
+              if feature.properties[field]?
+                otherfields  += "<b>Location: </b>#{feature.properties[field]}<br/>"
 
             if feature.properties.PROJECT_CO
               otherfields  += "<b>Project Cost: </b>#{currency_formatter(feature.properties.PROJECT_CO)}</br>"
 
-            popup += "<p>#{otherfields}</p>" if otherfields.length > 0
-            
-            if popup.length > 0
-              layer.bindPopup(popup) 
-            
+            if feature.properties.Summary
+              otherfields += "<a href=\"#{feature.properties.Summary}\" target=\"_blank\">Summary</a><br/>"
+
+            if feature.properties.link
+              otherfields += "<a href=\"#{feature.properties.link}\" target=\"_blank\">Link</a><br/>"
+
+            if feature.properties.RptLink
+              otherfields += "<a href=\"#{feature.properties.RptLink}\" target=\"_blank\">#{feature.properties.RptLink}</a><br/>"
+
+            # popup += "<p>#{otherfields}</p>" if otherfields.length > 0
+            otherfields += "</div>";
+
+            if otherfields.length > 0
+              layer.bindPopup(otherfields, { maxWidth: 300 })
+
     })
 }

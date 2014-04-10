@@ -10,18 +10,18 @@
 #layers-panel {
   position: relative;
   height: 100%;
-  
+
   h5 { font-size: 13px; }
-  
+
   .layers {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     width: 280px;
-    overflow: auto;    
+    overflow: auto;
   }
-  
+
   .panel {
     margin: 0;
     border-radius: 0;
@@ -46,7 +46,11 @@
 }
 
 .layer-group {
-  cursor: pointer;  
+  cursor: pointer;
+}
+
+.leaflet-popup-content {
+  padding: 0;
 }
 
 .layer-group-content label {
@@ -54,19 +58,19 @@
   padding: 5px;
   padding-left: 0px;
   font-weight: normal;
-  
-  h5 { 
-    padding: 0; margin: 0; 
+
+  h5 {
+    padding: 0; margin: 0;
     padding-top: 3px;
     padding-bottom: 5px;
   }
-  
+
   .layer-input {
     width: 10%;
     float: left;
     text-align: center;
   }
-  
+
   .layer-legend {
     float: left;
     width: 90%;
