@@ -39,6 +39,20 @@ catch
   },
 
   defs: {
+    'communities': {
+      name: 'AEDG Communities',
+      type: 'geojson',
+      url: '/data/aedi-data-2015/communities/aedg-communities-20151221.geojson',
+      layer_name: 'AEDG_communities',
+      builder: (geojson) =>
+        markers = new L.MarkerClusterGroup({
+          maxClusterRadius: 20,
+          iconCreateFunction: (cluster) ->
+            Layers.icons.for_class('communities', cluster)
+        })
+        markers.addLayer(Layers.for_class('communities', geojson))
+        markers
+    },
     'solar': {
       name: 'Solar',
       type: 'wms',
